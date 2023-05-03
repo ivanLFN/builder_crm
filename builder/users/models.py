@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
 
 
 class Departament(models.Model):
@@ -32,7 +34,8 @@ class Position(models.Model):
 
     departament = models.ForeignKey(
         Departament,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='position_departament'
     )
 
     base_salary = models.IntegerField()
@@ -47,17 +50,13 @@ class Position(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    start_date = models.DateField(
-        widget=models.DateInput(attrs={'type': 'date'})
-    )
+    start_date = models.DateField()
 
-    end_date = models.DateField(
-        widget=models.DateInput(attrs={'type': 'date'})
-    )
+    end_date = models.DateField()
 
     skills_required = models.ManyToManyField(
         Skill,
-        on_delete=models.CASCADE
+        related_name='position_skills_required'
     )
 
     experience_required = models.IntegerField()  # Требуемый опыт работы, в месяцах
@@ -88,18 +87,55 @@ class State(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    start_date = models.DateField(
-        widget=models.DateInput(attrs={'type': 'date'})
-    )
+    start_date = models.DateField()
 
-    end_date = models.DateField(
-        widget=models.DateInput(attrs={'type': 'date'})
-    )
+    end_date = models.DateField()
 
     is_active = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.title
+    
+
+
+class ClientGroup(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    permissions = models.ManyToManyField(
+        'ClientPermission',
+        blank=True,
+        help_text='The permissions this group has.',
+        related_name='client_groups',
+    )
+
+class ClientPermission(models.Model):
+    name = models.CharField(max_length=255)
+    content_type = models.ForeignKey(
+        ContentType,
+        models.CASCADE,
+        limit_choices_to={'app_label': 'clients'},
+    )
+    codename = models.CharField(max_length=100)
+
+
+
+class CompanyGroup(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    permissions = models.ManyToManyField(
+        'CompanyPermission',
+        blank=True,
+        help_text='The permissions this group has.',
+        related_name='company_groups',
+    )
+
+class CompanyPermission(models.Model):
+    name = models.CharField(max_length=255)
+    content_type = models.ForeignKey(
+        ContentType,
+        models.CASCADE,
+        limit_choices_to={'app_label': 'employees'},
+    )
+    codename = models.CharField(max_length=100)
+
 
 
 class CustomUser(AbstractUser):
@@ -112,7 +148,7 @@ class CustomUser(AbstractUser):
 
     positions = models.ManyToManyField(
         Position,
-        on_delete=models.CASCADE
+        related_name='user_positions'
     )
 
     rating = models.IntegerField()
@@ -128,14 +164,28 @@ class CustomUser(AbstractUser):
 
     states = models.ManyToManyField(
         State,
-        on_delete=models.CASCADE
+        related_name='user_states'
     )
 
     # notes = models.ManyToManyField(Note)
 
-    skills = models.ManyToManyField(Skill)
+    skills = models.ManyToManyField(
+        Skill,
+        related_name='user_skills'
+    )
 
-    is_client = models.BooleanField(default=False)
+
+
+
+    # Не совсем понятен этот момент
+    groups = models.ManyToManyField(
+        Group,
+        related_name='customuser_groups'
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name='customuser_user_permissions'
+    )
 
 
 class Crew(models.Model):
@@ -146,7 +196,8 @@ class Crew(models.Model):
 
     leader = models.ForeignKey(
         CustomUser,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='crew_leader'
     )
 
     members = models.ManyToManyField(
