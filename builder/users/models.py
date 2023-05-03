@@ -6,11 +6,11 @@ from django.contrib.contenttypes.models import ContentType
 
 class Departament(models.Model):
 
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, null=True, blank=True)
 
     create_at = models.DateTimeField(auto_now_add=True)
 
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
@@ -18,11 +18,11 @@ class Departament(models.Model):
 
 class Skill(models.Model):
 
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
@@ -35,7 +35,9 @@ class Position(models.Model):
     departament = models.ForeignKey(
         Departament,
         on_delete=models.CASCADE,
-        related_name='position_departament'
+        related_name='position_departament',
+        null=True, 
+        blank=True
     )
 
     base_salary = models.IntegerField()
@@ -151,16 +153,18 @@ class CustomUser(AbstractUser):
         related_name='user_positions'
     )
 
-    rating = models.IntegerField()
+    rating = models.IntegerField(null=True, blank=True)
 
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20, null=True, blank=True)
 
     address = models.ForeignKey(
         Address,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True, 
+        blank=True
     )
 
-    dismissal_at = models.DateTimeField(default=None)
+    # dismissal_at = models.DateTimeField(default=None)
 
     states = models.ManyToManyField(
         State,
