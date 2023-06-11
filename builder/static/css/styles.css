@@ -60,6 +60,10 @@
 }
 
 
-.input-el{
-
+.text-main-button{
+    color: white;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 26px;
+    line-height: 30px;
 }
