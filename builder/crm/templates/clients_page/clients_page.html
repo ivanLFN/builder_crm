@@ -1,4 +1,4 @@
-<!-- updates_page.html -->
+<!-- clients_page.html -->
 
 {% extends 'base.html' %}
 {% load static %}
@@ -14,7 +14,7 @@
 
 
 {% block header %}
-    Обновления
+    Клиенты
 {% endblock %}
 
 
@@ -36,7 +36,7 @@
     
         <a href="{% url 'clients_page' %}" class="d-none d-sm-flex flex-column align-items-center mb-3" style="text-decoration: none;">
             <div style="position: relative;">
-                <img src="{% static 'images/ellipse.png' %}"/>
+                <img src="{% static 'images/active_ellipse.png' %}"/>
                 <img src="{% static 'images/clients_icon.png' %}" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
               </div>
             <div class="text-main-button">Clients</div>
@@ -44,7 +44,7 @@
     
         <a href="{% url 'updates_page' %}" class="d-none d-sm-flex flex-column align-items-center mb-3" style="text-decoration: none;">
             <div style="position: relative;">
-                <img src="{% static 'images/active_ellipse.png' %}"/>
+                <img src="{% static 'images/ellipse.png' %}"/>
                 <img src="{% static 'images/updates_icon.png' %}" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
               </div>
             <div class="text-main-button">Updates</div>

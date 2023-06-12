@@ -26,33 +26,31 @@
 {% block menu %}
     <div class="col-12 d-flex flex-column align-items-center">
 
-        <a href="#" class="d-none d-sm-flex flex-column align-items-center mb-3" style="text-decoration: none;">
+        <a href="{% url 'home_page' %}" class="d-none d-sm-flex flex-column align-items-center mb-3" style="text-decoration: none;">
             <div style="position: relative;">
                 <img src="{% static 'images/active_ellipse.png' %}"/>
                 <img src="{% static 'images/home_icon.png' %}" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
-              </div>
+            </div>
             <div class="text-main-button">Home</div>
         </a>
-    
-        <a href="#" class="d-none d-sm-flex flex-column align-items-center mb-3" style="text-decoration: none;">
+
+        <a href="{% url 'clients_page' %}" class="d-none d-sm-flex flex-column align-items-center mb-3" style="text-decoration: none;">
             <div style="position: relative;">
                 <img src="{% static 'images/ellipse.png' %}"/>
                 <img src="{% static 'images/clients_icon.png' %}" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
-              </div>
+            </div>
             <div class="text-main-button">Clients</div>
         </a>
-    
-        <a href="#" class="d-none d-sm-flex flex-column align-items-center mb-3" style="text-decoration: none;">
+
+        <a href="{% url 'updates_page' %}" class="d-none d-sm-flex flex-column align-items-center mb-3" style="text-decoration: none;">
             <div style="position: relative;">
                 <img src="{% static 'images/ellipse.png' %}"/>
                 <img src="{% static 'images/updates_icon.png' %}" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
-              </div>
+            </div>
             <div class="text-main-button">Updates</div>
         </a>
 
     </div>
-        
-
 {% endblock %}
 
 
