@@ -53,7 +53,7 @@ class ImageDb(models.Model):
         on_delete=models.CASCADE, 
         blank=True, 
         default=None
-    )   
+    )
 
 class Order(models.Model):
     assingned_crew = models.ForeignKey(
