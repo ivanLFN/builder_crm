@@ -6,6 +6,7 @@ from users.models import Address, Crew
 
 
 class ClientCompany(models.Model):
+    avatar_path = models.CharField(max_length=255)
     official_company = models.BooleanField(default=True)
     name_company = models.CharField(max_length=255)
     person = models.CharField(max_length=255)

@@ -67,3 +67,40 @@
     font-size: 26px;
     line-height: 30px;
 }
+
+
+.custom-tabs .nav-item {
+    margin-bottom: 0;
+}
+
+.custom-tabs .nav-link {
+    background-color: white;
+    color: #5b2650;
+    border: none;
+    border-radius: 0;
+    text-align: left;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+}
+
+.custom-tabs .nav-link:hover,
+.custom-tabs .nav-link:focus {
+    background-color: white;
+}
+
+.custom-tabs .nav-link.active {
+    background-color: white;
+    border-bottom: 3px solid #882c75;
+    color: #5b2650;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+
+}
+
+.custom-tab-content .tab-pane {
+    background-color: white;
+}
