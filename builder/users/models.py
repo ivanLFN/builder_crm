@@ -8,9 +8,9 @@ from django.contrib.contenttypes.models import ContentType
 class Address(models.Model):
     country = models.CharField(max_length=255)
     region = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    street = models.CharField(max_length=255)
-    house = models.CharField(max_length=255)
+    city = models.CharField(max_length=255, blank=True)
+    street = models.CharField(max_length=255, blank=True)
+    house = models.CharField(max_length=255, blank=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True)
 

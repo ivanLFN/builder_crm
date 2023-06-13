@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from users.models import CustomUser
+from users.models import CustomUser, Address
 
 class CustomUserRegistrationForm(UserCreationForm):
     username = forms.CharField(
@@ -42,3 +42,16 @@ class CustomUserRegistrationForm(UserCreationForm):
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+
+class AddressForm(forms.ModelForm):
+    country = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    region = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    street = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    house = house = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = Address
+        fields = ('country', 'region', 'city', 'street', 'house')
+
