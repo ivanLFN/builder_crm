@@ -13,4 +13,4 @@ class ClientCompanyForm(forms.ModelForm):
 
     class Meta:
         model = ClientCompany
-        fields = ('official_company', 'name_company', 'person', 'email', 'phone_number,', 'add_info')
+        fields = ('official_company', 'name_company', 'person', 'email', 'phone_number', 'add_info')

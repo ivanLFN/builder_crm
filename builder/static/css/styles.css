@@ -46,6 +46,22 @@
 }
 
 
+
+.btn-custom-home{
+    background-color: white;
+    border: 1px solid #4e3851;
+    border-radius: 10px;
+    font-size: 22px;
+    color: #4e3851;
+    text-decoration: none !important ;
+}
+
+.btn-custom-home:hover {
+    color: #4e3851;
+    background-color: #f8f6f8;
+}
+
+
 .btn-custom {
     
     border-color: #4e3851;
