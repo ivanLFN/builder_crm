@@ -2,13 +2,38 @@ from django.shortcuts import redirect, render
 from crm.forms import ClientCompanyForm, OrderForm, Order
 from django.contrib import messages
 
+COUNT_ITEMS_SHOW = 5
+
 
 def home_page(request):
-    orders = Order.objects.all()
+    orders = Order.objects.all().order_by('end_at')
+
+    filters_orders = [
+        {
+            'title': 'По времени',
+            'content': list(orders)[:COUNT_ITEMS_SHOW]
+        },
+
+        {
+            'title': 'Высокий приоритет',
+            'content': [order for order in orders if order.client.loyalty == '1']
+        },
+
+        {
+            'title': 'В процессе',
+            'content': [order for order in orders if order.state_order.title == 'В работе']
+        },
+
+        {
+            'title': 'Выполненные',
+            'content': [order for order in orders if order.state_order.title == 'Выполнен']
+        }
+    ]
 
 
     data = {
         'orders': orders,
+        'filters_orders': filters_orders
     }
 
     return render(request, 'home_page/home_page.html', data)

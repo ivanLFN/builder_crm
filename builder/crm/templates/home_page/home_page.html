@@ -132,7 +132,66 @@
 
     <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
 
-      <!-- ЫККЫ -->
+      <div class="mt-4" id="accordion">
+        {% for filter_order in filters_orders %}
+        <div class="card mb-3 custom-accordion-tab">
+            <div class="card-header custom-accordion-tab" id="heading{{ forloop.counter }}">
+                <h5 class="mb-0">
+                    <button class="custom-btn-filter" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse{{ forloop.counter }}">
+                      
+                        <div class="row">
+                          <div class="col-1">
+                            <img src="{% static 'images/rectinge.png' %}"/>
+                          </div>
+                          <div class="ml-3">
+                            <div class="">{{ filter_order.title }}</div>
+                          </div>
+                        </div>
+                      
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapse{{ forloop.counter }}" class="collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-parent="#accordion">
+                <div class="card-body">
+
+                  {% for item in filter_order.content %}
+
+                  <div class="order-item col-10 offset-1 mt-3 p-3">
+                    <div class="row d-flex align-items-center justify-content-between">
+          
+                      {% if item.state_order.title == 'Выполнен' %}
+                        <img class="col-1" src="{% static 'images/ok.png' %}" alt="..."/>
+                      {% else %}
+                        <img class="col-1" src="{% static 'images/not_ok.png' %}" alt="..."/>
+                      {% endif %}
+          
+                      <a href="#" class="col-5 name-order" style="font-size: 1.5rem;">{{ item.title_order }}</a>
+          
+                      <div class="col-2" style="font-size: 1.5rem;">{{ item.end_at }}</div>
+                    
+          
+                      {% if item.client.loyalty == '1' %}
+                          <img class="col-1" src="{% static 'images/p1.png' %}"/>
+                      {% elif item.client.loyalty == '2' %}
+                          <img class="col-1" src="{% static 'images/p2.png' %}"/>
+                      {% elif item.client.loyalty == '3' %}
+                          <img class="col-1" src="{% static 'images/p3.png' %}"/>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  {% endfor %}
+
+
+
+
+                  
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
 
     </div>
 
@@ -171,7 +230,7 @@
 
             <a href="#" class="col-5 name-order" style="font-size: 1.5rem;">{{ order.title_order }}</a>
 
-            <div class="col-2" style="font-size: 1.5rem;">{{ order.end_at }}</div>
+            <div class="col-2" style="font-size: 1.5rem;">{{ order.create_at }}</div>
           
 
             {% if order.client.loyalty == '1' %}
