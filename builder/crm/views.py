@@ -6,8 +6,9 @@ from django.contrib import messages
 def home_page(request):
     orders = Order.objects.all()
 
+
     data = {
-        'orders': orders
+        'orders': orders,
     }
 
     return render(request, 'home_page/home_page.html', data)

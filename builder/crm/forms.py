@@ -28,8 +28,12 @@ class OrderForm(forms.ModelForm):
     end_at = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
     client = forms.ModelChoiceField(queryset=ClientCompany.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
     estimated_cost = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(
+        label='Описание',
+        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'cols': 40})
+    )
     
 
     class Meta:
         model = Order
-        fields = ('end_at', 'construction_type', 'special_work', 'state_order', 'title_order', 'estimated_cost')
+        fields = ('end_at', 'construction_type', 'special_work', 'state_order', 'title_order', 'estimated_cost', 'description')

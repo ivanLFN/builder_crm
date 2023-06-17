@@ -134,6 +134,8 @@ class Order(models.Model):
         default=None
     )
 
+    description = models.TextField(blank=True)
+
 
 
 
