@@ -1,0 +1,32 @@
+<!-- login.html -->
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}
+  Вход
+{% endblock %}
+
+{% block content %}
+<div class="col-12 col-md-5 mt-5"></div>
+    <div class="col-12 col-md-5">
+        <form class="form-inline flex-column align-items-end" method="post">
+            {% csrf_token %}
+
+
+            <div class="row align-items-center mb-4">
+                <div class='placeholder-input mr-3'>Имя пользователя:</div>
+                {{ form.username }}
+            </div>
+            
+            <div class="row align-items-center mb-4">
+                <div class='placeholder-input mr-3'>Пароль:</div>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-custom">Войти</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
