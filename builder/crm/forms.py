@@ -11,10 +11,11 @@ class ClientCompanyForm(forms.ModelForm):
     add_info = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     country = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     region = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    loyalty = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = ClientCompany
-        fields = ('official_company', 'name_company', 'person', 'email', 'phone_number', 'add_info', 'country', 'region')
+        fields = ('official_company', 'name_company', 'person', 'email', 'phone_number', 'add_info', 'country', 'region', 'loyalty')
 
 
 
