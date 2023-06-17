@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 from users.models import Address, Crew
 
@@ -30,16 +31,23 @@ class ClientCompany(models.Model):
 class StateType(models.Model):
     title = models.CharField(max_length=255)
     create_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return self.title
+        
 
 
 class ConstructionType(models.Model):
     title = models.CharField(max_length=50)
     create_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return self.title
 
 
 class SpecialWork(models.Model):
     title = models.CharField(max_length=50)
     create_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return self.title
 
 
 
@@ -58,15 +66,24 @@ class ImageDb(models.Model):
         CurrentReport, 
         related_name='owner', 
         on_delete=models.CASCADE, 
+        blank=True
+    )
+
+class Order(models.Model):
+    client = models.ForeignKey(
+        ClientCompany,
+        related_name='client', 
+        on_delete=models.CASCADE,
+        null=True,
         blank=True, 
         default=None
     )
 
-class Order(models.Model):
     assingned_crew = models.ForeignKey(
         Crew, 
         related_name='assingned_crew', 
-        on_delete=models.CASCADE, 
+        on_delete=models.CASCADE,
+        null=True,
         blank=True, 
         default=None
     )
@@ -111,7 +128,8 @@ class Order(models.Model):
     building_address = models.ForeignKey(
         Address, 
         related_name='building_address', 
-        on_delete=models.CASCADE, 
+        on_delete=models.CASCADE,
+        null=True,
         blank=True, 
         default=None
     )

@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from crm.forms import ClientCompanyForm
+from crm.forms import ClientCompanyForm, OrderForm
+from django.contrib import messages
 
 
 def home_page(request):
@@ -20,8 +21,23 @@ def create_new_client(request):
         form = ClientCompanyForm(request.POST)
         if form.is_valid():
             client_company = form.save()
-            return redirect('lients_page')
+            messages.success(request, 'Клиент успешно создан!')
+            return redirect('clients_page')
     else:
         form = ClientCompanyForm()
 
     return render(request, 'clients_page/create_new_client.html', {'form': form})
+
+
+
+def create_new_order(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            messages.success(request, 'Заказ успешно создан!')
+            return redirect('home_page')
+    else:
+        form = OrderForm()
+
+    return render(request, 'home_page/create_new_order.html', {'form': form})

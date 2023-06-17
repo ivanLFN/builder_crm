@@ -57,7 +57,36 @@
 
 {% block content %}
 
+{% if messages %}
+  {% for message in messages %}
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel">Заказ создан</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Заказ успешно создан!
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
 
+{% if messages %}
+  <script>
+    $(document).ready(function() {
+      $('#successModal').modal('show');
+      setTimeout(function() {
+        $('#successModal').modal('hide');
+      }, 1000);
+    });
+  </script>
+{% endif %}
 
 
 <div class="col-10" >
@@ -91,7 +120,7 @@
         <div class="col-12 col-md-5 mt-5">
             <div class="col-12 col-md-12 ml-5">
                 <div class="d-flex flex-column align-items-center">
-                    <a class="m-4 p-3 btn-custom-home w-100 text-center" href="#">Создать новый заказ</a>
+                    <a class="m-4 p-3 btn-custom-home w-100 text-center" href="{% url 'create_new_order' %}">Создать новый заказ</a>
                     <a class="m-4 p-3 btn-custom-home w-100 text-center" href="#">Изменить существующий</a>
                     <a class="m-4 p-3 btn-custom-home w-100 text-center" href="#">Удалить заказ</a>
                 </div>
