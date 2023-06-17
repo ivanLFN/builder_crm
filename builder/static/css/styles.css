@@ -49,8 +49,9 @@
 
 .btn-custom-home{
     background-color: white;
-    border: 1px solid #4e3851;
-    border-radius: 10px;
+    border: 1px solid #ebe1e1;
+    border-radius: 13px;
+    box-shadow: 4px 3px 4px 3px rgba(0, 0, 0, 0.13);
     font-size: 22px;
     color: #4e3851;
     text-decoration: none !important ;

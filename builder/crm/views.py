@@ -1,10 +1,16 @@
 from django.shortcuts import redirect, render
-from crm.forms import ClientCompanyForm, OrderForm
+from crm.forms import ClientCompanyForm, OrderForm, Order
 from django.contrib import messages
 
 
 def home_page(request):
-    return render(request, 'home_page/home_page.html', {})
+    orders = Order.objects.all()
+
+    data = {
+        'orders': orders
+    }
+
+    return render(request, 'home_page/home_page.html', data)
 
 
 def clients_page(request):
@@ -34,7 +40,9 @@ def create_new_order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            order = form.save()
+            order = form.save(commit=False)  # Создаем экземпляр Order без сохранения в базу данных
+            order.client = form.cleaned_data['client']  # Устанавливаем значение поля client на основе данных из формы
+            order.save()
             messages.success(request, 'Заказ успешно создан!')
             return redirect('home_page')
     else:
