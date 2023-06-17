@@ -7,17 +7,23 @@ from users.models import Address, Crew
 
 class ClientCompany(models.Model):
     avatar_path = models.CharField(max_length=255, blank=True)
-    official_company = models.BooleanField(default=True)
+    official_company = models.BooleanField(default=True, blank=True)
     name_company = models.CharField(max_length=255)
     person = models.CharField(max_length=255)
-    address = models.ForeignKey(Address, related_name='address', on_delete=models.CASCADE, blank=True)
     email = models.EmailField()
     phone_number = models.CharField(max_length=20)
     loyalty = models.CharField(max_length=10)
     add_info = models.TextField()
+    country = models.CharField(max_length=255, null=True, default=None)
+    region = models.CharField(max_length=255, null=True, default=None)
+    city = models.CharField(max_length=255, null=True, blank=True, default=None)
+    street = models.CharField(max_length=255, null=True, blank=True, default=None)
+    house = models.CharField(max_length=255, null=True, blank=True, default=None)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, default=0)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, default=0)
 
     def __str__(self):
-        return self.name
+        return self.name_company
     
 
 
@@ -94,7 +100,7 @@ class Order(models.Model):
 
     title_order = models.CharField(max_length=255)
 
-    estimated_cost = models.IntegerField(blank=True, default=0)
+    estimated_cost = models.DecimalField(max_digits=10, decimal_places=2, blank=True, default=0)
 
     final_cost = models.IntegerField(blank=True, default=0)
 

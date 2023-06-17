@@ -88,7 +88,18 @@
 
 <div class="tab-content custom-tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-        Содержимое для Вкладки 1 здесь.
+
+        <div class="col-12 col-md-5 mt-5">
+            <div class="col-12 col-md-12 ml-5">
+                <div class="d-flex flex-column align-items-center">
+                    <a class="m-4 p-3 btn-custom-home w-100 text-center" href="{% url 'create_new_client' %}">Создать нового клиента</a>
+                    <a class="m-4 p-3 btn-custom-home w-100 text-center" href="#">Изменить существующего</a>
+                    <a class="m-4 p-3 btn-custom-home w-100 text-center" href="#">Переместить в корзину</a>
+                </div>
+            </div>
+        </div>
+        
+        
     </div>
 
     <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
