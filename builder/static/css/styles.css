@@ -120,3 +120,16 @@
 .custom-tab-content .tab-pane {
     background-color: white;
 }
+
+
+.order-item{
+
+    border: 1px solid #ebe1e1;
+    border-radius: 13px;
+    box-shadow: 4px 3px 4px 3px rgba(0, 0, 0, 0.13);
+}
+
+.name-order{
+    text-decoration: none !important;
+    color: #212530;
+}
