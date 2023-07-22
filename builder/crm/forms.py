@@ -1,7 +1,5 @@
 from django import forms
 from crm.models import ClientCompany, ConstructionType, SpecialWork, Order, StateType
-from users.forms import AddressForm
-
 
 class ClientCompanyForm(forms.ModelForm):
     name_company = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -17,9 +15,6 @@ class ClientCompanyForm(forms.ModelForm):
         model = ClientCompany
         fields = ('official_company', 'name_company', 'person', 'email', 'phone_number', 'add_info', 'country', 'region', 'loyalty')
 
-
-
-
 class OrderForm(forms.ModelForm):
     title_order = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     construction_type = forms.ModelChoiceField(queryset=ConstructionType.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
@@ -33,7 +28,26 @@ class OrderForm(forms.ModelForm):
         widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'cols': 40})
     )
     
-
     class Meta:
         model = Order
         fields = ('end_at', 'construction_type', 'special_work', 'state_order', 'title_order', 'estimated_cost', 'description')
+
+class OrderEditForm(forms.ModelForm):
+    estimated_cost = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    final_cost = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    payment_status = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    payment_method = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    end_at = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
+    state_order = forms.ModelChoiceField(queryset=StateType.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = Order
+        fields = (
+            'estimated_cost', 
+            'final_cost',
+            'payment_status',
+            'payment_method',
+            'end_at',
+            'state_order',
+        )
+        

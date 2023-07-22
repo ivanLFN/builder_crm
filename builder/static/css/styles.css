@@ -151,3 +151,9 @@
     background-color: white;
     border: none;
 }
+
+.result-link{
+    text-decoration: none !important;
+    color: #212530;
+    font-size: 1.3rem;
+}

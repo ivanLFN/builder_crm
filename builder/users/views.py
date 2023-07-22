@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from users.forms import CustomUserRegistrationForm, LoginForm
 
-
 def register(request):
     if request.method == 'POST':
         form = CustomUserRegistrationForm(request.POST)
@@ -11,7 +10,6 @@ def register(request):
     else:
         form = CustomUserRegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -26,7 +24,6 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, 'registration/login.html', {'form': form})
-
 
 def personal_data(request):
     return render(request, 'personal_data.html')

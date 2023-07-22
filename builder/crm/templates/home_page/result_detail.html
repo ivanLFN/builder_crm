@@ -1,10 +1,10 @@
-<!-- create_new_order.html -->
+<!-- result_detail.html -->
 
 {% extends 'base.html' %}
 {% load static %}
 
 {% block header %}
-    Новый заказ
+    Изменить существующий заказ
 {% endblock %}
 
 {% block menu %}
@@ -36,15 +36,16 @@
 
     </div>
 {% endblock %}
-
+    
 {% block content %}
-<div class="col-12 col-md-5 mt-5"></div>
-<div class="col-12 col-md-5 ml-5">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary btn-custom">Создать</button>
-    </form>
-</div>
-</div>
+    <div class="col-5 offset-1 mt-5">
+        <h3 class="mb-3">{{ order.title_order }}</h3>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary btn-custom" type="submit">Обновить заказ</button>
+        </form>    
+    </div>
+    
 {% endblock %}

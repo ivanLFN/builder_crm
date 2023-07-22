@@ -3,25 +3,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
-
-
-
-
-
-
-
 {% block header %}
     Клиенты
 {% endblock %}
-
-
-
-
-
-
 
 {% block menu %}
     <div class="col-12 d-flex flex-column align-items-center">
@@ -51,17 +35,9 @@
         </a>
 
     </div>
-        
-
 {% endblock %}
 
-
-
-
-
 {% block content %}
-
-
 {% if messages %}
   {% for message in messages %}
     <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
@@ -116,8 +92,6 @@
     </ul>
 </div>
 
-
-
 <div class="tab-content custom-tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
 
@@ -131,7 +105,6 @@
             </div>
         </div>
         
-        
     </div>
 
     <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
@@ -144,5 +117,4 @@
         {% endblock %}
     </div>
 </div>
-    
 {% endblock %}

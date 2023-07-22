@@ -1,0 +1,35 @@
+<!-- search-results.html -->
+{% load static %}
+
+<div class="col-12">
+    <div class="row-custom mt-5">
+        <table class="table" id="search-results-table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col">Статус</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr class="fade-in">
+                            <td>
+                                <a href="{% url 'result_detail' result.id %}" class="result-link">
+                                    {{ result.title_order }}
+                                </a>
+                            </td>
+                            <td class="result-link">{{ result.create_at }}</td>
+                            <td class="result-link">{{ result.state_order }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+    </div>   
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#search-results-table").hide().fadeIn(600);
+    });
+</script>

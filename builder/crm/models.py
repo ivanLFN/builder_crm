@@ -2,10 +2,6 @@ from typing import Any
 from django.db import models
 from users.models import Address, Crew
 
-
-
-
-
 class ClientCompany(models.Model):
     avatar_path = models.CharField(max_length=255, blank=True)
     official_company = models.BooleanField(default=True, blank=True)
@@ -26,22 +22,17 @@ class ClientCompany(models.Model):
     def __str__(self):
         return self.name_company
     
-
-
 class StateType(models.Model):
     title = models.CharField(max_length=255)
     create_at = models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
         return self.title
-        
-
-
+    
 class ConstructionType(models.Model):
     title = models.CharField(max_length=50)
     create_at = models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
         return self.title
-
 
 class SpecialWork(models.Model):
     title = models.CharField(max_length=50)
@@ -49,17 +40,11 @@ class SpecialWork(models.Model):
     def __str__(self) -> str:
         return self.title
 
-
-
-
-
-
 class CurrentReport(models.Model):
     title = models.CharField(max_length=50)
     desc = models.CharField(max_length=50)
     create_at = models.DateTimeField(auto_now_add=True)
   
-
 class ImageDb(models.Model):
     path_img = models.CharField(max_length=255)
     owner = models.ForeignKey(

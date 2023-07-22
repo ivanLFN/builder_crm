@@ -24,7 +24,6 @@ class CustomUserRegistrationForm(UserCreationForm):
         label="Подтвердите пароль",
     )
 
-
 class CustomUserRegistrationForm(UserCreationForm):
 
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -37,12 +36,9 @@ class CustomUserRegistrationForm(UserCreationForm):
         model = CustomUser
         fields = ('username','email', 'phone', 'password1', 'password2')
 
-
-
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-
 
 class AddressForm(forms.ModelForm):
     country = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))

@@ -3,8 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 
-
-
 class Address(models.Model):
     country = models.CharField(max_length=255)
     region = models.CharField(max_length=255)
@@ -12,10 +10,8 @@ class Address(models.Model):
     street = models.CharField(max_length=255, blank=True)
     house = models.CharField(max_length=255, blank=True)
 
-
     def __str__(self):
         return f"{self.country}, {self.region}, {self.city}, {self.street}, {self.house}"
-
 
 class ClientGroup(models.Model):
     name = models.CharField(max_length=150, unique=True)
@@ -26,7 +22,6 @@ class ClientGroup(models.Model):
         related_name='client_groups',
     )
 
-
 class ClientPermission(models.Model):
     name = models.CharField(max_length=255)
     content_type = models.ForeignKey(
@@ -35,7 +30,6 @@ class ClientPermission(models.Model):
         limit_choices_to={'app_label': 'clients'},
     )
     codename = models.CharField(max_length=100)
-
 
 class CompanyGroup(models.Model):
     name = models.CharField(max_length=150, unique=True)
@@ -46,7 +40,6 @@ class CompanyGroup(models.Model):
         related_name='company_groups',
     )
 
-
 class CompanyPermission(models.Model):
     name = models.CharField(max_length=255)
     content_type = models.ForeignKey(
@@ -55,7 +48,6 @@ class CompanyPermission(models.Model):
         limit_choices_to={'app_label': 'employees'},
     )
     codename = models.CharField(max_length=100)
-
 
 class CustomUser(AbstractUser):
 
@@ -86,7 +78,6 @@ class CustomUser(AbstractUser):
         related_name='customuser_user_permissions'
     )
 
-
 class Crew(models.Model):
 
     name_crew = models.CharField(max_length=50)
@@ -109,7 +100,6 @@ class Crew(models.Model):
     def __str__(self) -> str:
         return self.name_crew
 
-
 class TypeSkill(models.Model):
 
     title_skill = models.CharField(max_length=255)
@@ -123,7 +113,6 @@ class TypeSkill(models.Model):
 
     def __str__(self) -> str:
         return self.title_skill
-
 
 class Skill(models.Model):
 
@@ -150,7 +139,6 @@ class Skill(models.Model):
     def __str__(self) -> str:
         return self.created_at
 
-
 class TypeState(models.Model):
 
     name_state = models.CharField(
@@ -166,7 +154,6 @@ class TypeState(models.Model):
 
     def __str__(self) -> str:
         return self.name_state
-
 
 # Работает, уволен, в отпуске
 class State(models.Model):
@@ -198,8 +185,6 @@ class State(models.Model):
     def __str__(self) -> str:
         return self.type_state
     
-
-
 class Departament(models.Model):
 
     title = models.CharField(max_length=50, null=True, blank=True)
@@ -211,7 +196,6 @@ class Departament(models.Model):
     def __str__(self) -> str:
         return self.title
     
-
 class TypePosition(models.Model):
 
     name_position = models.CharField(
@@ -237,7 +221,6 @@ class TypePosition(models.Model):
 
     def __str__(self) -> str:
         return self.name_position
-
 
 class Position(models.Model):
 

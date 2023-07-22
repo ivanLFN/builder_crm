@@ -3,25 +3,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
-
-
-
-
-
-
-
 {% block header %}
     Домашняя страница
 {% endblock %}
-
-
-
-
-
-
 
 {% block menu %}
     <div class="col-12 d-flex flex-column">
@@ -53,10 +37,7 @@
     </div>
 {% endblock %}
 
-
-
 {% block content %}
-
 {% if messages %}
   {% for message in messages %}
     <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
@@ -88,7 +69,6 @@
   </script>
 {% endif %}
 
-
 <div class="col-10" >
     <ul class="nav nav-tabs nav-fill custom-tabs" id="myTabs" role="tablist">
         <li class="nav-item mr-5">
@@ -112,8 +92,6 @@
     </ul>
 </div>
 
-
-
 <div class="tab-content custom-tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
 
@@ -121,7 +99,7 @@
             <div class="col-12 col-md-12 ml-5">
                 <div class="d-flex flex-column align-items-center">
                     <a class="m-4 p-3 btn-custom-home w-100 text-center" href="{% url 'create_new_order' %}">Создать новый заказ</a>
-                    <a class="m-4 p-3 btn-custom-home w-100 text-center" href="#">Изменить существующий</a>
+                    <a class="m-4 p-3 btn-custom-home w-100 text-center" href="{% url 'table_orders_page' %}">Изменить существующий</a>
                     <a class="m-4 p-3 btn-custom-home w-100 text-center" href="#">Удалить заказ</a>
                 </div>
             </div>
@@ -170,7 +148,6 @@
           
                       <div class="col-2" style="font-size: 1.5rem;">{{ item.end_at }}</div>
                     
-          
                       {% if item.client.loyalty == '1' %}
                           <img class="col-1" src="{% static 'images/p1.png' %}"/>
                       {% elif item.client.loyalty == '2' %}
@@ -181,12 +158,7 @@
                     </div>
                   </div>
 
-                  {% endfor %}
-
-
-
-
-                  
+                  {% endfor %}    
                 </div>
             </div>
         </div>
@@ -216,8 +188,6 @@
           </div>
         </div>
 
-
-
         {% for order in orders %}
         <div class="order-item col-10 offset-1 mt-3 p-3">
           <div class="row d-flex align-items-center justify-content-between">
@@ -232,7 +202,6 @@
 
             <div class="col-2" style="font-size: 1.5rem;">{{ order.create_at }}</div>
           
-
             {% if order.client.loyalty == '1' %}
                 <img class="col-1" src="{% static 'images/p1.png' %}"/>
             {% elif order.client.loyalty == '2' %}
@@ -245,8 +214,5 @@
 
         {% endfor %}
       </div>
-</div>
-
-
-    
+</div>   
 {% endblock %}
